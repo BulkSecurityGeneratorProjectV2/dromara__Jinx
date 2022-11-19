@@ -47,6 +47,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.nio.file.Files;
 import java.util.Collections;
 import java.util.EnumSet;
 import java.util.Enumeration;
@@ -255,7 +256,7 @@ public class NettyEmbeddedContext implements ServletContext {
     public String getRealPath(String path) {
         if ("/".equals(path)) {
             try {
-                File file = File.createTempFile("netty-servlet-bridge", "");
+                File file = Files.createTempFile("netty-servlet-bridge", "").toFile();
                 file.mkdirs();
                 return file.getAbsolutePath();
             } catch (IOException e) {
